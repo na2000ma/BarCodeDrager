@@ -1,0 +1,158 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  font-size: 18px;
+  color: white;
+  height: 100%;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  border-top-right-radius: 15px;
+  background-color: #c0a476;
+  width: 100%;
+  height: 100%;
+  padding-top: 10%;
+}
+.label {
+  flex: 2;
+}
+.papers-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.paper-container,
+.paper-checked {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 88%;
+  height: 27px;
+}
+::ng-deep[dir="ltr"] {
+  .paper-container,
+  .paper-checked {
+    padding-left: 29px;
+  }
+}
+::ng-deep[dir="rtl"] {
+  .paper-container,
+  .paper-checked {
+    padding-right: 29px;
+  }
+}
+
+.paper-checked,
+.paper-container:hover {
+  background-color: white;
+  color: #a30033;
+  transition: 600ms;
+}
+
+.paper-checked {
+  height: 35px;
+}
+
+.paper-container:hover,
+.paper-checked:hover {
+  cursor: pointer;
+}
+
+button {
+  border: none;
+  background: #a30033;
+  border-radius: 15px;
+  cursor: pointer;
+  color: white;
+  width: 103px;
+  height: 30px;
+}
+
+button:hover {
+  box-shadow: 1px 1px 1px 0px #812a45;
+}
+
+.line {
+  height: 1px;
+  width: 100%;
+  background: #a30033;
+}
+
+.par-code-dimensions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  align-items: center;
+}
+.details-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 2%;
+  margin-left: 7%;
+}
+
+.details-container > label {
+  font-size: 16px;
+}
+
+select,
+input {
+  flex: 1;
+  border: none;
+  background: white;
+  width: 28%;
+  border-radius: 16px;
+  color: #a30033;
+}
+select {
+  cursor: pointer;
+}
+
+select:focus-visible,
+input:focus-visible {
+  border: none;
+  outline: none;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none !important;
+  margin: 0 !important;
+}
+
+.template-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: myAnimation 1s ease-in-out;
+}
+
+@keyframes myAnimation {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.template-button {
+  border: none;
+  background: #8f6e7808;
+  border-radius: 15px;
+  color: white;
+  cursor: pointer;
+  width: 103px;
+  text-decoration: underline;
+}
+// .main-label:hover {
+//   cursor: pointer;
+// }
+.main-label {
+  margin-left: 11px;
+}

@@ -1,0 +1,12 @@
+{
+    "selectPageType":"Select Page Type",
+    "parcodeDimensions": "Parcode Dimensions",
+    "dimensions": "Dimesions",
+    "in": "in",
+    "name": "name",
+    "width": "width",
+    "height": "height",
+    "save": "Save",
+    "costume": "Costume",
+    "saveTemplate": "SaveTemplate"
+}

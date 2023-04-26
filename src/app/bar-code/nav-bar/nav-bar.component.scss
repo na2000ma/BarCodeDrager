@@ -1,0 +1,17 @@
+.nav-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 8%;
+  background-color: #a30033;
+  transition: 0.5s;
+}
+
+button {
+  border: none;
+  background: #a30033;
+  border-radius: 15px;
+  cursor: pointer;
+  width: 103px;
+  height: 30px;
+}

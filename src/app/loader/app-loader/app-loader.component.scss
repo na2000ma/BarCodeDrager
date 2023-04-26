@@ -1,13 +1,8 @@
-html,
-body {
-  height: 100%;
-  width: 100%;
-  overflow: hidden;
-  margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+div {
+  font-family: inherit;
+  background-color: black;
+  color: white;
 }
-
-/*** Loader ***/
 
 @keyframes ring-animation {
   0% {
@@ -67,7 +62,6 @@ body {
   justify-content: center;
   align-items: center;
   padding: 50vh 50vw;
-  background-color: black;
 }
 
 .ring {
@@ -80,7 +74,7 @@ body {
   padding: 5rem;
 }
 
-.span {
+span {
   z-index: 3;
   text-transform: uppercase;
   animation: span-animation 2s infinite;

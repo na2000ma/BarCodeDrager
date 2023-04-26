@@ -1,0 +1,74 @@
+<div class="container">
+  <form class="form" [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+    <label class="main-label">{{ "selectPageType" | translate }}</label>
+    <div class="papers-container">
+      <div
+        #pageRef
+        *ngFor="let page of realPages; let i = index"
+        (click)="onClickPage(page, i)"
+        [class]="!checked[i] ? 'paper-container' : 'paper-checked'"
+      >
+        <h5 style="flex: 1" id="paper-type">{{ page.type }}</h5>
+        <small style="display: flex; flex: 3">
+          <div style="flex: 2">{{ page.width | floor }}</div>
+          <div style="flex: 1">*</div>
+          <div style="flex: 2">{{ page.height | floor }}</div>
+        </small>
+      </div>
+      <button type="button" (click)="onClickCostume()">
+        {{ "costume" | translate }}
+      </button>
+    </div>
+
+    <div *ngIf="costumeMode" class="par-code-dimensions">
+      <form
+        class="template-form"
+        [formGroup]="templateFormGroup"
+        (ngSubmit)="onTemplateSubmit()"
+      >
+        <div class="details-container">
+          <label class="label" for="name"> {{ "name" | translate }} </label>
+          <input type="text" id="name" formControlName="name" />
+        </div>
+        <div class="details-container">
+          <label class="label" for="width"> {{ "width" | translate }} </label>
+          <input type="number" id="width" formControlName="pWidth" />
+        </div>
+        <div class="details-container">
+          <label class="label" for="height"> {{ "height" | translate }} </label>
+          <input type="number" id="height" formControlName="pHeight" />
+        </div>
+        <button class="template-button" type="submit">
+          {{ "saveTemplate" | translate }}
+        </button>
+      </form>
+    </div>
+    <div class="line"></div>
+    <label class="main-label">{{ "parcodeDimensions" | translate }}</label>
+    <div class="par-code-dimensions">
+      <div class="details-container">
+        <label class="label"> {{ "width" | translate }} </label>
+        <input type="number" id="width" formControlName="width" />
+      </div>
+      <div class="details-container">
+        <label class="label" for="height"> {{ "height" | translate }} </label>
+        <input type="number" id="height" formControlName="height" />
+      </div>
+    </div>
+    <div class="line"></div>
+    <div class="details-container">
+      <label class="label">
+        {{ "dimensions" | translate }}
+        <small>{{ "in" | translate }}</small></label
+      >
+      <select id="dimension" formControlName="dimension">
+        <option *ngFor="let dimension of dimensions" [value]="dimension.type">
+          {{ dimension.type }}
+        </option>
+      </select>
+    </div>
+    <div class="details-container">
+      <button type="submit">{{ "save" | translate }}</button>
+    </div>
+  </form>
+</div>
