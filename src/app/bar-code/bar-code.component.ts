@@ -28,7 +28,7 @@ export class BarCodeComponent implements OnInit, AfterViewInit {
 
   @ViewChild('qrContainer') qrContainer!: ElementRef;
   @ViewChild('container') container!: ElementRef;
-  @ViewChild('img', { static: true }) img: any;
+  @ViewChild('img') img!: ElementRef;
   pages!: Page[];
   realPages!: Page[];
   parentWidth!: number;
@@ -38,7 +38,7 @@ export class BarCodeComponent implements OnInit, AfterViewInit {
   imgWidth!: number;
   imgHeight!: number;
   isOpen!: boolean;
-  styleObj!: any;
+  styleObj: any = {};
   //bar code position
   x!: number;
   y!: number;
@@ -57,15 +57,17 @@ export class BarCodeComponent implements OnInit, AfterViewInit {
     private acrivatedRoute: ActivatedRoute
   ) {}
   ngAfterViewInit(): void {
+    this.parentWidth = this.qrContainer.nativeElement.offsetWidth;
+    this.parentHeight = this.qrContainer.nativeElement.offsetHeight;
+    this.imgWidth = this.img.nativeElement.offsetWidth;
+    this.imgHeight = this.img.nativeElement.offsetHeight;
     //access to the query params
     this.acrivatedRoute.queryParams.subscribe((params: Params) => {
-      this.x = params['x'];
-      this.y = params['y'];
       this.styleObj = {
-        left: this.x + this.dimensionType,
-        top: this.y + this.dimensionType,
+        left: params['x'] + this.dimensionType,
+        top: this.parentHeight - params['y'] - 34 + this.dimensionType,
       };
-      console.log('hello');
+      console.log(this.styleObj);
     });
   }
 
@@ -122,11 +124,8 @@ export class BarCodeComponent implements OnInit, AfterViewInit {
   }
 
   onKeyDown(event: any): void {
+    event.preventDefault();
     var name = event.key;
-    this.parentWidth = this.qrContainer.nativeElement.offsetWidth;
-    this.parentHeight = this.qrContainer.nativeElement.offsetHeight;
-    this.imgWidth = this.img.nativeElement.offsetWidth;
-    this.imgHeight = this.img.nativeElement.offsetHeight;
 
     if (name == 'ArrowRight') {
       this.x += 0.5 * this.imgWidth;
@@ -149,15 +148,14 @@ export class BarCodeComponent implements OnInit, AfterViewInit {
       return;
     }
 
-    this.img.nativeElement.style.left = this.x + this.dimensionType;
-    this.img.nativeElement.style.top = this.y + this.dimensionType;
+    this.styleObj = {
+      left: this.x + this.dimensionType,
+      top: this.y + this.dimensionType,
+    };
+    console.log(this.x, '   ', this.parentHeight - this.y);
   }
   onDropQR(event: any): void {
     event.preventDefault();
-    this.parentWidth = this.qrContainer.nativeElement.offsetWidth;
-    this.parentHeight = this.qrContainer.nativeElement.offsetHeight;
-    this.imgWidth = this.img.nativeElement.offsetWidth;
-    this.imgHeight = this.img.nativeElement.offsetHeight;
     this.x =
       event['x'] -
       this.qrContainer.nativeElement.offsetLeft -
@@ -174,9 +172,12 @@ export class BarCodeComponent implements OnInit, AfterViewInit {
     ) {
       return;
     }
-    this.img.nativeElement.style.left = this.x + this.dimensionType;
-    this.img.nativeElement.style.top = this.y + this.dimensionType;
-    console.log(this.x, '  ', this.y);
+    this.styleObj = {
+      left: this.x + this.dimensionType,
+      top: this.y + this.dimensionType,
+    };
+
+    console.log(this.x, '  ', this.parentHeight - this.y);
   }
   onDragOver(event: Event): void {
     event.preventDefault();
