@@ -18,23 +18,23 @@ export class PageService {
   dimensions!: Dimension[];
   constructor() {
     this.realPages = [
-      { type: 'A0', height: 118.8 * 37.8, width: 84.1 * 37.8 },
-      { type: 'A1', height: 84.1 * 37.8, width: 59.4 * 37.8 },
-      { type: 'A2', height: 59.4 * 37.8, width: 42.0 * 37.8 },
-      { type: 'A3', height: 42.0 * 37.8, width: 29.7 * 37.8 },
       { type: 'A4', height: 29.8 * 37.8, width: 21.1 * 37.8 },
+      { type: 'A3', height: 42.0 * 37.8, width: 29.7 * 37.8 },
+      { type: 'A2', height: 59.4 * 37.8, width: 42.0 * 37.8 },
+      { type: 'A1', height: 84.1 * 37.8, width: 59.4 * 37.8 },
+      { type: 'A0', height: 118.8 * 37.8, width: 84.1 * 37.8 },
     ];
 
     this.pages = [
       {
-        type: 'A0',
-        height: this.realPages[0].height * 0.2,
-        width: this.realPages[0].width * 0.2,
+        type: 'A4',
+        height: this.realPages[0].height * 0.45,
+        width: this.realPages[0].width * 0.45,
       },
       {
-        type: 'A1',
-        height: this.realPages[1].height * 0.25,
-        width: this.realPages[1].width * 0.25,
+        type: 'A3',
+        height: this.realPages[1].height * 0.35,
+        width: this.realPages[1].width * 0.35,
       },
       {
         type: 'A2',
@@ -42,14 +42,14 @@ export class PageService {
         width: this.realPages[2].width * 0.3,
       },
       {
-        type: 'A3',
-        height: this.realPages[3].height * 0.35,
-        width: this.realPages[3].width * 0.35,
+        type: 'A1',
+        height: this.realPages[3].height * 0.25,
+        width: this.realPages[3].width * 0.25,
       },
       {
-        type: 'A4',
-        height: this.realPages[4].height * 0.45,
-        width: this.realPages[4].width * 0.45,
+        type: 'A0',
+        height: this.realPages[4].height * 0.2,
+        width: this.realPages[4].width * 0.2,
       },
       //{ type: 'A5', height: 490, width: 500 },
       // { type: 'A6', height: 100, width: 200 },

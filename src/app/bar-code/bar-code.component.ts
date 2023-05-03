@@ -25,7 +25,6 @@ export class BarCodeComponent implements OnInit, AfterViewInit {
   @ViewChild('overlayTemplate') overlayTemplate!: TemplateRef<any>;
   @ViewChild('overlayContainer', { read: ViewContainerRef })
   overlayContainer!: ViewContainerRef;
-
   @ViewChild('qrContainer') qrContainer!: ElementRef;
   @ViewChild('container') container!: ElementRef;
   @ViewChild('img') img!: ElementRef;
@@ -65,7 +64,12 @@ export class BarCodeComponent implements OnInit, AfterViewInit {
     this.acrivatedRoute.queryParams.subscribe((params: Params) => {
       this.styleObj = {
         left: params['x'] + this.dimensionType,
-        top: this.parentHeight - params['y'] - 34 + this.dimensionType,
+        top:
+          this.parentHeight -
+          params['y'] -
+          this.imgHeight -
+          4 +
+          this.dimensionType,
       };
       console.log(this.styleObj);
     });
@@ -124,20 +128,21 @@ export class BarCodeComponent implements OnInit, AfterViewInit {
   }
 
   onKeyDown(event: any): void {
-    event.preventDefault();
-    var name = event.key;
+    const name = event.key;
 
-    if (name == 'ArrowRight') {
-      this.x += 0.5 * this.imgWidth;
-    }
-    if (name == 'ArrowLeft') {
-      this.x -= 0.5 * this.imgWidth;
-    }
-    if (name == 'ArrowUp') {
-      this.y -= 0.5 * this.imgHeight;
-    }
-    if (name == 'ArrowDown') {
-      this.y += 0.5 * this.imgHeight;
+    switch (name) {
+      case 'ArrowRight':
+        this.x += 1;
+        break;
+      case 'ArrowLeft':
+        this.x -= 1;
+        break;
+      case 'ArrowUp':
+        this.y -= 1;
+        break;
+      case 'ArrowDown':
+        this.y += 1;
+        break;
     }
     if (
       this.x < 0 ||
@@ -152,18 +157,14 @@ export class BarCodeComponent implements OnInit, AfterViewInit {
       left: this.x + this.dimensionType,
       top: this.y + this.dimensionType,
     };
-    console.log(this.x, '   ', this.parentHeight - this.y);
+    console.log(this.x, '   ', this.parentHeight - this.y - this.imgHeight - 4);
   }
   onDropQR(event: any): void {
     event.preventDefault();
-    this.x =
-      event['x'] -
-      this.qrContainer.nativeElement.offsetLeft -
-      0.5 * this.imgWidth;
-    this.y =
-      event['y'] -
-      this.qrContainer.nativeElement.offsetTop -
-      0.5 * this.imgHeight;
+    const qrContainerRect =
+      this.qrContainer.nativeElement.getBoundingClientRect();
+    this.x = event['x'] - qrContainerRect.left - 0.5 * this.imgWidth;
+    this.y = event['y'] - qrContainerRect.top - 0.5 * this.imgHeight;
     if (
       this.x < 0 ||
       this.y < 0 ||
@@ -177,7 +178,7 @@ export class BarCodeComponent implements OnInit, AfterViewInit {
       top: this.y + this.dimensionType,
     };
 
-    console.log(this.x, '  ', this.parentHeight - this.y);
+    console.log(this.x, '   ', this.parentHeight - this.y - this.imgHeight - 4);
   }
   onDragOver(event: Event): void {
     event.preventDefault();
@@ -191,6 +192,8 @@ export class BarCodeComponent implements OnInit, AfterViewInit {
           page.width + this.dimensionType;
         this.qrContainer.nativeElement.style.height =
           page.height + this.dimensionType;
+        this.parentWidth = page.width;
+        this.parentHeight = page.height;
       }
     });
   }

@@ -31,7 +31,7 @@ export class SideBarComponent implements OnInit {
     new EventEmitter<number>();
   @Output('heightChange') heightChange: EventEmitter<number> =
     new EventEmitter<number>();
-  pageType!: string;
+  pageType: string = 'A4';
   dimensionType: string = 'px';
   width!: number;
   height!: number;
@@ -43,8 +43,9 @@ export class SideBarComponent implements OnInit {
     });
     this.pageService.realPagesObserver.subscribe((pages: Page[]) => {
       this.realPages = pages;
-      this.realPages.forEach(() => this.checked.push(false));
-      this.pageType = pages[0].type;
+      this.pages.forEach((page: Page, index: number) => {
+        this.checked.push(false);
+      });
     });
 
     this.dimensions = this.pageService.dimensions;
