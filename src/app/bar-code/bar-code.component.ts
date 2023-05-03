@@ -71,7 +71,6 @@ export class BarCodeComponent implements OnInit, AfterViewInit {
           4 +
           this.dimensionType,
       };
-      console.log(this.styleObj);
     });
   }
 
