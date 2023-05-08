@@ -18,7 +18,7 @@ export class PageService {
   dimensions!: Dimension[];
   constructor() {
     this.realPages = [
-      { type: 'A4', height: 29.8 * 37.8, width: 21.1 * 37.8 },
+      { type: 'A4', height: 842, width: 595 },
       { type: 'A3', height: 42.0 * 37.8, width: 29.7 * 37.8 },
       { type: 'A2', height: 59.4 * 37.8, width: 42.0 * 37.8 },
       { type: 'A1', height: 84.1 * 37.8, width: 59.4 * 37.8 },
@@ -28,8 +28,8 @@ export class PageService {
     this.pages = [
       {
         type: 'A4',
-        height: this.realPages[0].height * 0.45,
-        width: this.realPages[0].width * 0.45,
+        height: this.realPages[0].height * 0.5,
+        width: this.realPages[0].width * 0.5,
       },
       {
         type: 'A3',

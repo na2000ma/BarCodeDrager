@@ -60,16 +60,16 @@ export class BarCodeComponent implements OnInit, AfterViewInit {
     this.parentHeight = this.qrContainer.nativeElement.offsetHeight;
     this.imgWidth = this.img.nativeElement.offsetWidth;
     this.imgHeight = this.img.nativeElement.offsetHeight;
-    //access to the query params
+    //access to the query paramsoffsetTop
+    let obj1 = this.imageProcess(120, 60 * 2);
     this.acrivatedRoute.queryParams.subscribe((params: Params) => {
+      let obj = this.imageProcess(
+        params['x'],
+        params['y'] - this.qrContainer.nativeElement.offsetTop * 0.15
+      );
       this.styleObj = {
-        left: params['x'] + this.dimensionType,
-        top:
-          this.parentHeight -
-          params['y'] -
-          this.imgHeight -
-          4 +
-          this.dimensionType,
+        left: obj.x + this.dimensionType,
+        top: this.parentHeight - obj.y - 40 + this.dimensionType,
       };
     });
   }
@@ -146,8 +146,8 @@ export class BarCodeComponent implements OnInit, AfterViewInit {
     if (
       this.x < 0 ||
       this.y < 0 ||
-      this.x >= this.parentWidth - this.imgWidth ||
-      this.y >= this.parentHeight - this.imgHeight
+      this.x > this.parentWidth - this.imgWidth ||
+      this.y > this.parentHeight - this.imgHeight
     ) {
       return;
     }
@@ -156,7 +156,19 @@ export class BarCodeComponent implements OnInit, AfterViewInit {
       left: this.x + this.dimensionType,
       top: this.y + this.dimensionType,
     };
-    console.log(this.x, '   ', this.parentHeight - this.y - this.imgHeight - 4);
+    let obj = this.axisProcess(this.x, this.y);
+
+    let obj1 = this.imageProcess(120, 60);
+    console.log(obj1);
+
+    console.log(
+      obj.x,
+      '   ',
+      Math.min(
+        this.realPages[0].height - 4 * obj1.y,
+        this.realPages[0].height - obj.y - obj1.x
+      )
+    );
   }
   onDropQR(event: any): void {
     event.preventDefault();
@@ -167,8 +179,8 @@ export class BarCodeComponent implements OnInit, AfterViewInit {
     if (
       this.x < 0 ||
       this.y < 0 ||
-      this.x >= this.parentWidth - this.imgWidth ||
-      this.y >= this.parentHeight - this.imgHeight
+      this.x > this.parentWidth - this.imgWidth ||
+      this.y > this.parentHeight - this.imgHeight
     ) {
       return;
     }
@@ -177,7 +189,27 @@ export class BarCodeComponent implements OnInit, AfterViewInit {
       top: this.y + this.dimensionType,
     };
 
-    console.log(this.x, '   ', this.parentHeight - this.y - this.imgHeight - 4);
+    let obj = this.axisProcess(this.x, this.y);
+    let obj1 = this.imageProcess(120, 60);
+    console.log(obj1);
+
+    console.log(
+      obj.x,
+      '   ',
+      Math.min(
+        this.realPages[0].height - 4 * obj1.y,
+        this.realPages[0].height - obj.y - obj1.x
+      )
+    );
+  }
+  axisProcess(x_axis: number, y_axis: number) {
+    let page = this.initPages();
+    let x = (x_axis * page.realPageWidth) / page.pageWidth;
+    let y = (y_axis * page.realPageHeight) / page.pageHeight;
+    return {
+      x: x,
+      y: y,
+    };
   }
   onDragOver(event: Event): void {
     event.preventDefault();
@@ -200,37 +232,46 @@ export class BarCodeComponent implements OnInit, AfterViewInit {
     this.dimensionType = dimension;
   }
   onWidthChange(width: any): void {
-    let pageWidth = 0;
-    let realPageWidth = 0;
-    this.pages.forEach((page: Page) => {
-      if (page.type == this.pageType) {
-        pageWidth = page.width;
-      }
-    });
-    this.realPages.forEach((page: Page) => {
-      if (page.type == this.pageType) {
-        realPageWidth = page.width;
-      }
-    });
-    this.imgWidth = width;
-    let w = (this.imgWidth * pageWidth) / realPageWidth;
-    this.img.nativeElement.style.width = w + this.dimensionType;
+    let obj = this.imageProcess(width, 0);
+    this.img.nativeElement.style.width = obj.x + this.dimensionType;
   }
   onHeightChange(height: any): void {
+    let obj = this.imageProcess(0, height);
+    this.img.nativeElement.style.height = obj.y + this.dimensionType;
+  }
+
+  initPages() {
+    let pageWidth = 0;
+    let realPageWidth = 0;
     let pageHeight = 0;
     let realPageHeight = 0;
     this.pages.forEach((page: Page) => {
       if (page.type == this.pageType) {
+        pageWidth = page.width;
         pageHeight = page.height;
       }
     });
     this.realPages.forEach((page: Page) => {
       if (page.type == this.pageType) {
+        realPageWidth = page.width;
         realPageHeight = page.height;
       }
     });
-    this.imgHeight = height;
-    let h = (this.imgHeight * pageHeight) / realPageHeight;
-    this.img.nativeElement.style.height = h + this.dimensionType;
+    return {
+      pageWidth: pageWidth,
+      realPageWidth: realPageWidth,
+      pageHeight: pageHeight,
+      realPageHeight: realPageHeight,
+    };
+  }
+
+  imageProcess(x_axis: number, y_axis: number) {
+    let page = this.initPages();
+    let x = (x_axis * page.pageWidth) / page.realPageWidth;
+    let y = (y_axis * page.pageHeight) / page.realPageHeight;
+    return {
+      x: x,
+      y: y,
+    };
   }
 }

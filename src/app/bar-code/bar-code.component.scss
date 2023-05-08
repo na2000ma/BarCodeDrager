@@ -30,8 +30,8 @@
   display: flex;
   border: 2px solid black;
   background: white;
-  width: 358.911px;
-  height: 506.898px;
+  width: 297.5px;
+  height: 421px;
   max-width: 60%;
   max-height: 595px;
   margin-top: 1%;
@@ -39,6 +39,8 @@
   transition: 0.5s;
   justify-content: flex-start;
   align-items: flex-end;
+  // justify-content: center;
+  // align-items: center;
 }
 .img {
   position: absolute;
