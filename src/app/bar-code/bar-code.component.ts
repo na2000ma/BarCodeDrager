@@ -151,8 +151,7 @@ export class BarCodeComponent implements OnInit, AfterViewInit {
 
   onDropQR(event: any): void {
     event.preventDefault();
-    const qrContainerRect =
-      this.qrContainer.nativeElement.getBoundingClientRect();
+    const qrContainerRect = this.qrContainer.nativeElement.getBoundingClientRect();
     this.x = event['x'] - qrContainerRect.left - 0.5 * this.imgWidth;
     this.y = event['y'] - qrContainerRect.top - 0.5 * this.imgHeight;
     this.applyChanges();
@@ -236,31 +235,31 @@ export class BarCodeComponent implements OnInit, AfterViewInit {
   }
 
   applyChanges() {
-    if (
+    if (!(
       this.x < 0 ||
       this.y < 0 ||
       this.x > this.parentWidth - this.imgWidth ||
       this.y > this.parentHeight - this.imgHeight
-    ) {
-      return;
+    )) {
+      this.styleObj = {
+        left: this.x + this.dimensionType,
+        top: this.y + this.dimensionType,
+      };
+      let obj = this.axisProcess(this.x, this.y);
+
+      let obj1 = this.imageProcess(120, 60);
+
+      console.log(
+        obj.x,
+        '   ',
+        Math.min(
+          this.realPages[0].height - 4 * obj1.y,
+          this.realPages[0].height - obj.y - obj1.x
+        )
+      );
     }
 
-    this.styleObj = {
-      left: this.x + this.dimensionType,
-      top: this.y + this.dimensionType,
-    };
-    let obj = this.axisProcess(this.x, this.y);
 
-    let obj1 = this.imageProcess(120, 60);
-
-    console.log(
-      obj.x,
-      '   ',
-      Math.min(
-        this.realPages[0].height - 4 * obj1.y,
-        this.realPages[0].height - obj.y - obj1.x
-      )
-    );
   }
 
 }
