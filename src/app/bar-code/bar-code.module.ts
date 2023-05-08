@@ -3,9 +3,8 @@ import { CommonModule } from '@angular/common';
 import { BarCodeComponent } from './bar-code.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { SideBarComponent } from './side-bar/side-bar.component';
-import { FloorPipe } from '../pipes/floor.pipe';
+import { FloorPipe } from './pipes/floor.pipe';
 import { NgDirectionDirective } from '../directives/ng-direction.directive';
-import { AppLoaderComponent } from '../loader/app-loader/app-loader.component';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -25,7 +24,6 @@ export function loadData(pageService: PageService) {
     NavBarComponent,
     FloorPipe,
     NgDirectionDirective,
-    AppLoaderComponent,
   ],
   imports: [
     CommonModule,

@@ -61,12 +61,12 @@ export class BarCodeComponent implements OnInit, AfterViewInit {
     this.imgWidth = this.img.nativeElement.offsetWidth;
     this.imgHeight = this.img.nativeElement.offsetHeight;
     //access to the query paramsoffsetTop
-    let obj1 = this.imageProcess(120, 60 * 2);
     this.acrivatedRoute.queryParams.subscribe((params: Params) => {
       let obj = this.imageProcess(
         params['x'],
         params['y'] - this.qrContainer.nativeElement.offsetTop * 0.15
       );
+      // 40 : margin top
       this.styleObj = {
         left: obj.x + this.dimensionType,
         top: this.parentHeight - obj.y - 40 + this.dimensionType,
