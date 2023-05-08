@@ -1,7 +1,7 @@
 <div class="container">
   <div style="display: flex; flex-direction: column; width: 17%">
     <div class="logo">
-      <img style="transform: scale(0.2)" src="../../assets/images/logo1.png" />
+      <img style="transform: scale(0.2)" src="../../assets/images/logo1.png" alt=""/>
     </div>
     <app-side-bar
       class="side-bar"
@@ -19,12 +19,12 @@
         class="lang-img1"
         src="../../assets/icons/language.svg"
         (click)="showOverlay()"
-      />
+        alt=""/>
       <ng-template #overlayTemplate>
         <div *ngIf="isOpen" class="language-select">
           <div
             *ngFor="let language of languages"
-            class="langauge-container"
+            class="language-container"
             (click)="switchLanguage($event)"
           >
             <div>
@@ -33,7 +33,7 @@
             <img
               class="lang-img"
               [src]="language == 'en' ? enImgPath : arImgPath"
-            />
+              alt=""/>
           </div>
         </div>
       </ng-template>
@@ -53,7 +53,7 @@
           src="assets/images/barcode2.jpg"
           #img
           [ngStyle]="styleObj"
-        />
+          alt=""/>
       </div>
     </div>
   </div>

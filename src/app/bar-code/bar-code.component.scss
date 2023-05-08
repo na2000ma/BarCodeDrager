@@ -125,7 +125,7 @@ select:focus {
   outline: none;
 }
 
-.langauge-container {
+.language-container {
   display: flex;
   align-items: center;
   gap: 2rem;
@@ -133,7 +133,7 @@ select:focus {
   justify-content: space-around;
 }
 
-.langauge-container:hover {
+.language-container:hover {
   box-shadow: 3px 2px 2px 1px rgb(197, 188, 196);
   cursor: pointer;
   border-radius: 8px;

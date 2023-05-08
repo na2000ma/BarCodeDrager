@@ -43,7 +43,7 @@ export class SideBarComponent implements OnInit {
     });
     this.pageService.realPagesObserver.subscribe((pages: Page[]) => {
       this.realPages = pages;
-      this.pages.forEach((page: Page, index: number) => {
+      this.pages.forEach(() => {
         this.checked.push(false);
       });
     });
