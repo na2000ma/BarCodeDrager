@@ -1,0 +1,83 @@
+.menu-container {
+  right: 0px;
+  top: 0;
+  position: fixed;
+  width: 22vw;
+  height: 100vh;
+  background-color: #f1f1f1;
+  z-index: 20;
+  padding: 9px;
+}
+
+.hide {
+  animation-name: hideAnimation;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+
+}
+
+@keyframes hideAnimation {
+  0% {
+    right: 0vh;
+    display: block
+  }
+
+  ;
+
+  100% {
+    right: -22vw;
+    display: none;
+  }
+}
+
+.active {
+  animation-name: activeAnimation;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+
+}
+
+@keyframes activeAnimation {
+  0% {
+    right: -22vw;
+    display: none;
+  }
+
+  ;
+
+  100% {
+    right: 0vh;
+    display: block
+  }
+}
+
+.btn-hide {
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  margin: 10px;
+  color: #bd3434;
+  border: 1px solid;
+
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 13px;
+  color: #006767;
+}
+.button-save{
+  text-align: center;
+  margin-top: 8px;
+  button{
+    background: #d6cfcf;
+    transition: 0.5s;
+  }
+  button:hover{
+    transform: scale(1.03);
+  }
+}

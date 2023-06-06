@@ -9,10 +9,10 @@ const routes: Routes = [
   },
 
   {
-    path: '',
-    redirectTo: '',
-    pathMatch: 'full'
-  }
+    path: 'production',
+    loadComponent: () => import('./@generator/components/production-container/production-container.component')
+    .then(c => c.ProductionContainerComponent)
+  },
 ];
 
 @NgModule({

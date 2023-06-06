@@ -1,0 +1,35 @@
+.l-container {
+  height: auto;
+  display: flex;
+}
+
+.b-red {
+  border: 1px solid red;
+}
+
+.b-green {
+  border: 1px solid green;
+}
+.selected {
+  animation-name:select;
+  animation-duration: 2s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+@keyframes select {
+  0%{
+    border: 4px solid blue;
+  };
+
+  50%{
+    border: 4px solid rgb(195, 195, 241);
+  }
+
+  100%{
+    border: 4px solid blue;
+  }
+}
+.menu-item:hover{
+  background-color: #f1f1f1;
+}
+

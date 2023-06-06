@@ -1,0 +1,21 @@
+<div class="container">
+  <button  (click)="open($event)" style="z-index: 100;">
+  <div *ngIf="!isOpen">
+  <mat-icon>menu</mat-icon>
+  </div>
+  <div *ngIf="isOpen">X</div>
+  </button>
+  <div *ngIf="isOpen">
+    <div *ngFor="let config of actionsConfigs;index as i" [ngStyle]="{'--n--': n}">
+      <button (click)="handleClick($event,config)"
+      [title]="config.name"
+      [ngClass]="{'open-animation': !close,'close-animation': close}"
+      class="action-btn"
+      [ngStyle]="{'--index--': i}">
+      <mat-icon> {{config?.icon}}</mat-icon>
+
+      </button>
+    </div>
+  </div>
+
+</div>

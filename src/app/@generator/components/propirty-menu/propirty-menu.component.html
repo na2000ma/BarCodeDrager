@@ -1,0 +1,14 @@
+
+<div class="flex flex-col menu-container" [ngClass]="{'hide': hide,'active':!hide}">
+  <div class="flex justify-end w-full">
+    <button (click)="onHide()" class="btn-hide">X</button>
+  </div>
+  <h3 class="title">{{configForm?.title || ''}}</h3>
+  <form card-content-info [formGroup]="formGroup">
+    <formly-form [model]="model" [fields]="configForm?.form?.fields" [form]="formGroup">
+    </formly-form>
+  </form>
+  <div class="button-save">
+    <button type="button" class="btn" (click)="OnSave()">Save</button>
+  </div>
+</div>
