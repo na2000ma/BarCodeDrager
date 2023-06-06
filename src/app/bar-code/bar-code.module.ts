@@ -13,9 +13,16 @@ import { PortalModule } from '@angular/cdk/portal';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PageService } from './page.service';
+import { RouterModule, Routes } from '@angular/router';
 export function loadData(pageService: PageService) {
   return () => pageService.loadData();
 }
+const routes: Routes = [
+  {
+    path: 'barCode',
+    component: BarCodeComponent
+  }
+];
 @NgModule({
   declarations: [
     BarCodeComponent,
@@ -27,6 +34,7 @@ export function loadData(pageService: PageService) {
   ],
   imports: [
     CommonModule,
+    RouterModule.forChild(routes),
     OverlayModule,
     PortalModule,
     BrowserAnimationsModule,

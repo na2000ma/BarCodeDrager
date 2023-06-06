@@ -1,12 +1,18 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { BarCodeComponent } from './bar-code/bar-code.component';
 
 const routes: Routes = [
   {
     path: 'barCode',
-    component: BarCodeComponent,
+    loadChildren: () =>
+      import('../app/bar-code/bar-code.module').then((m) => m.BarCodeModule),
   },
+
+  {
+    path: '',
+    redirectTo: '',
+    pathMatch: 'full'
+  }
 ];
 
 @NgModule({
