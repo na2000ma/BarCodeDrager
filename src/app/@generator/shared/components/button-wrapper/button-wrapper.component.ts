@@ -13,6 +13,5 @@ import { ButtonConfig } from '../../models/button.config';
 export class ButtonWrapperComponent implements InjectableComponent {
   config!: ButtonConfig;
   constructor() {
-    // super();
   }
 }

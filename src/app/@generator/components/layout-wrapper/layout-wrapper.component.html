@@ -1,3 +1,4 @@
+<!-- {{layers?.level}} -->
 <div
   (contextmenu)="isDevMode ? onContextMenu($event) : ''"
   (click)="isDevMode ? selectItem($event) : ''"
@@ -5,8 +6,8 @@
   [class.selected]="selectedId===layers?.id"
   [class.flex-col]="layers?.nodeData?.type == 'col'"
   [class.flex-row]="layers?.nodeData?.type == 'row'"
-  [class.b-red]="layers?.nodeData?.type == 'col'&&!isProductView"
-  [class.b-green]="layers?.nodeData?.type == 'row'&&!isProductView"
+  [class.b-red]="layers?.nodeData?.type == 'col'"
+  [class.b-green]="layers?.nodeData?.type == 'row'"
   [ngStyle]="initStyleConfig"
 >
 
@@ -21,7 +22,7 @@
           flex: layer?.nodeData?.propertyStyle?.flex ?? 1,
         }"
       >
-        <app-layout-wrapper [layer]="layer" [mode]="isDevMode" [subLayoutMode]="subLayoutMode"></app-layout-wrapper>
+        <app-layout-wrapper [isFormWrapper]="isFormWrapper" [layer]="layer" [mode]="isDevMode" [subLayoutMode]="subLayoutMode"></app-layout-wrapper>
       </div>
     </ng-container>
   </ng-container>
@@ -46,8 +47,12 @@
             Edit Alone
           </button>
           <button *ngIf="layers.level != 0" class="menu-item"  mat-menu-item (click)="deleteNode()">Delete</button>
-          <button *ngIf="!isFormWrapper" class="menu-item"  mat-menu-item (click)="addForm()">Add Form</button>
-          <button *ngIf="!isFormWrapper" class="menu-item"  mat-menu-item (click)="addInput()">Add Input</button>
+          <button *ngIf="!isFormWrapper && !layers?.nodeData.isFormWrapper" class="menu-item"  mat-menu-item (click)="addForm()">Add Form</button>
+          <button *ngIf="isFormWrapper && !itHasContent" class="menu-item"  mat-menu-item (click)="addInput()">Add Input</button>
+          <button  class="menu-item"  mat-menu-item (click)="addText()">Add Text</button>
+          <button  class="menu-item"  mat-menu-item (click)="addButton()">Add Button</button>
+
+
 
           <mat-menu #addChild="matMenu">
             <button class="menu-item"  mat-menu-item (click)="addNode('row', 'child')">

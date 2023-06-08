@@ -1,6 +1,5 @@
-import { NgModule } from '@angular/core';
+import { Injector, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppComponent } from './app.component';
 import { LayoutModule } from '@sss/layout';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
@@ -12,7 +11,7 @@ import { FormControllModule } from '@sss/forms';
 import { FormlyModule } from '@ngx-formly/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
-
+export let AppInjector: Injector;
 @NgModule({
   declarations: [
     AppComponent
@@ -37,7 +36,12 @@ import { AppRoutingModule } from './app-routing.module';
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule {
+  constructor(injector: Injector){
+    AppInjector = injector
+  }
+
+}
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');

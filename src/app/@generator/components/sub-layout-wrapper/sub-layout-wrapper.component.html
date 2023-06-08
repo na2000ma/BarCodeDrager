@@ -1,9 +1,16 @@
 
 <div *ngIf="subView" class="h-full">
-  <app-layout-wrapper [layer]="subLayout" [subLayoutMode]="true"  [mode]="true" [isProductView]="isProductView"></app-layout-wrapper>
+  <app-layout-wrapper 
+  [layer]="subLayout" 
+  [subLayoutMode]="true"  
+  [mode]="true" 
+  [isProductView]="isProductView"></app-layout-wrapper>
   <app-propirty-menu></app-propirty-menu>
 </div>
 <div *ngIf="!subView" class="h-full">
-  <app-layout-wrapper [layer]="rootLayout" [mode]="false" [isProductView]="isProductView"></app-layout-wrapper>
+  <app-layout-wrapper 
+  [layer]="rootLayout" 
+  [mode]="false" 
+  [isProductView]="isProductView"></app-layout-wrapper>
 </div>
 <app-actions-menu class="ch-view-btn" [Actions]="actionsMenuConfigs"></app-actions-menu>

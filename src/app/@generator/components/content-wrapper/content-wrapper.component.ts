@@ -1,5 +1,6 @@
 import { Component, ComponentFactoryResolver, Input, OnInit, ViewChild, ViewContainerRef, forwardRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { WrapperMapper } from '../../shared/models/wrapper.mapper';
 
 @Component({
   selector: 'app-content-wrapper',
@@ -19,7 +20,7 @@ export class ContentWrapperComponent implements OnInit {
 
   ngOnInit(): void {
     if(this.componentRef) {
-      const componentFactory = this.componentFactoryResolver.resolveComponentFactory(this.componentRef.component);
+      const componentFactory = this.componentFactoryResolver.resolveComponentFactory(WrapperMapper[this.componentRef.component]);
       const componentRef = this.viewport.createComponent(componentFactory);
       componentRef.instance['config'] = this.componentRef.config;
     }

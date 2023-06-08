@@ -1,0 +1,15 @@
+<div class="container">
+    <div *ngIf="data?.title" class="title">{{data?.title || ""}}
+    </div>
+    <div>
+        <form [formGroup]="formGroup">
+            <formly-form [model]="model" [fields]="fields" [form]="formGroup">
+            </formly-form>
+        </form>
+    </div>
+
+    <div class="buttons">
+        <button type="button" [disabled]="!formGroup.valid" class="add" (click)="save()">{{"Add"}}</button>
+        <button type="button" class="cancel" (click)="closeDialog()">{{"Cancel"}}</button>
+    </div>
+</div>

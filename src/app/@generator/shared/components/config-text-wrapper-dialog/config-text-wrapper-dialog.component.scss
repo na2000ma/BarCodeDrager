@@ -1,0 +1,55 @@
+.container {
+    padding: 30px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+}
+.title{
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 28px;
+    color: #2D3E50;
+    text-align: center;
+}
+.buttons{
+    display: flex;
+    justify-content: center;
+    height: 34px;
+    button{
+        margin: 0px 5px 0px 5px;
+        height: 100%;
+    }
+}
+.add {
+    background: #D3B54B;
+    box-shadow: inset 0px -6px 0px rgba(0, 0, 0, 0.25);
+    border-radius: 49px;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 20px;
+    text-align: center;
+    color: #2D3E50;
+    width: 125px;
+    height: 26px;
+}
+
+.cancel {
+    border: 1px solid #008C5D;
+    filter: drop-shadow(0px 4px 14px rgba(0, 0, 0, 0.5));
+    border-radius: 41px;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 20px;
+    text-align: center;
+    color: #008C5D;
+    width: 125px;
+    height: 26px;
+}

@@ -1,4 +1,8 @@
-<div>form</div>
-<form>
-    <app-layout-wrapper [layer]="config?.layout"></app-layout-wrapper>
+<form [formGroup]="formGroup" class="h-full w-full" (change)="handleChange($event)" (ngSubmit)="formGroup?.valid && handleSubmit()">
+    <app-layout-wrapper class="h-full w-full"
+    [layer]="config?.layout"
+    [isFormWrapper]="config?.isFormWrapper"
+    [isProductView]="false"
+    [mode]="true"></app-layout-wrapper>
 </form>
+<app-propirty-menu></app-propirty-menu>

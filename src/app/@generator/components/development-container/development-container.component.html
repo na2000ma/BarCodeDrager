@@ -1,5 +1,8 @@
-<app-layout-wrapper [layer]="config" [mode]="true" [subLayoutMode]="false" [isProductView]="this.isProductView"></app-layout-wrapper>
+<app-layout-wrapper [layer]="subLayoutService.rootLayout" [mode]="true" [subLayoutMode]="false" [isProductView]="this.isProductView"></app-layout-wrapper>
 <app-propirty-menu></app-propirty-menu>
 
 <app-actions-menu class="ch-view-btn" [Actions]="actionsMenuConfigs"></app-actions-menu>
 
+    <button (click)="saveProject()" style="z-index: 11111;">
+        Save Project
+    </button>

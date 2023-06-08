@@ -1,3 +1,10 @@
+@tailwind base;
+// @import "~tailwindcss/base";
+@tailwind components;
+// @import "~tailwindcss/components";
+@tailwind utilities;
+
+
 html,
 body {
   height: 100%;
